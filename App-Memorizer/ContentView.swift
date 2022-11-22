@@ -4,30 +4,33 @@
 //
 //  Created by Geiziane alexandre on 15/11/22.
 //
-
+import Foundation
 import SwiftUI
 
 struct ContentView: View {
+    var viewModel:EmojiMemoryGame
     var body: some View {
         HStack{
-            ForEach(0..<4){index in
-            CardView(viradoParaCima:false)
+            ForEach(viewModel.cartaos){cartao in
+            CardView(cartao: cartao)
         }
     }
         .padding()
-        .foregroundColor(Color.orange)
+        .foregroundColor(Color.white)
         .font(Font.largeTitle)
     }
 }
 
 struct CardView: View{
-    var viradoParaCima: Bool
+    var cartao: MemoryGame<String>.Cartao
+    
+    
     var body: some View{
         ZStack{
-            if viradoParaCima {
-                RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
+            if cartao.viraParaCima{
+                RoundedRectangle(cornerRadius: 10.0).fill(Color.orange)
                 RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
-                Text("👻")
+                Text(cartao.conteudo)
             } else {
                 RoundedRectangle(cornerRadius: 10.0).fill()
             }
@@ -48,6 +51,6 @@ struct CardView: View{
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(viewModel: EmojiMemoryGame())
     }
 }
