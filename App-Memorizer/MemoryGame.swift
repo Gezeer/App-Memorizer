@@ -10,8 +10,18 @@ import SwiftUI
 struct MemoryGame<CartaoConteudo> {
     var cartaos: Array <Cartao>
     
-    func Escolha(cartao: Cartao){
+  mutating  func Escolha(cartao: Cartao){
         print("cartão escolhido:\(cartaos)")
+      let escolhaIndex: Int = self.index(of: cartao)
+      self.cartaos[escolhaIndex].viraParaCima = !self.cartaos[escolhaIndex].viraParaCima
+    }
+    func index(of cartao: Cartao) -> Int{
+        for index in 0..<self.cartaos.count{
+            if self.cartaos[index].id == cartao.id {
+                return index
+            }
+        }
+        return 0 //TODO: BOGUS!
     }
     
     init(numerosDeParesDoCartao: Int, cartaoConteudoFuncao:(Int) -> CartaoConteudo){

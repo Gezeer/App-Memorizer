@@ -7,14 +7,14 @@
 import SwiftUI
 
 
-class EmojiMemoryGame{
+class EmojiMemoryGame: ObservableObject {
     
     
-    private var  model: MemoryGame<String> = EmojiMemoryGame.criarMemoryGame()
+   @Published private var  model: MemoryGame<String> = EmojiMemoryGame.criarMemoryGame()
     
     static func criarMemoryGame() -> MemoryGame<String>{
-        let emojis: Array<String> = ["👻","🎃"]
-        return MemoryGame<String>(numerosDeParesDoCartao: 2) { parDeIncio in
+        let emojis: Array<String> = ["👻","🎃","🕷️"]
+        return MemoryGame<String>(numerosDeParesDoCartao: emojis.count) { parDeIncio in
             return emojis[parDeIncio]
         }
         //MARK: - Acesso ao Modelo
