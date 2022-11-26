@@ -1,3 +1,4 @@
 # App-Memorizer
 ### [**curso SwiftUI - Stanford**](https://youtu.be/bqu6BquVi2M)
-<img src = "/Users/geizianealexandre/Desktop/foto.png" > 
+![Uploading foto.png…](CS193p iPhone Application Development Spring 2020)
+
