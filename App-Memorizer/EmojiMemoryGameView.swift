@@ -19,7 +19,7 @@ struct EmojiMemoryGameView: View {
     }
         .padding()
         .foregroundColor(Color.orange)
-        .font(Font.largeTitle)
+       
     }
 }
 
@@ -28,17 +28,22 @@ struct CardView: View{
     
     
     var body: some View{
-        ZStack{
-            if cartao.viraParaCima{
-                RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
-                RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
-                Text(cartao.conteudo)
-            } else {
-                RoundedRectangle(cornerRadius: 10.0).fill()
+        GeometryReader(content: {geometry in
+            ZStack{
+                if cartao.viraParaCima{
+                    RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
+                    RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
+                    Text(cartao.conteudo)
+                } else {
+                    RoundedRectangle(cornerRadius: 10.0).fill()
+                }
             }
-        }
+            .font(Font.largeTitle)
+        })
+       
     }
-}
+                       }
+
 
 
 
