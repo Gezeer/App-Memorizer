@@ -28,36 +28,51 @@ struct CardView: View{
     
     
     var body: some View{
-        GeometryReader(content: {geometry in
-            ZStack{
-                if cartao.viraParaCima{
-                    RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
-                    RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
-                    Text(cartao.conteudo)
-                } else {
-                    RoundedRectangle(cornerRadius: 10.0).fill()
-                }
-            }
-            .font(Font.largeTitle)
-        })
-       
+        GeometryReader {geometry in
+            self.body(for:geometry.size)
+        }
     }
-                       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        EmojiMemoryGameView(viewModel: EmojiMemoryGame())
+    func body(for size: CGSize) -> some View{
+        ZStack{
+            if cartao.viraParaCima{
+                RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
+                RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
+                Text(cartao.conteudo)
+            } else {
+                RoundedRectangle(cornerRadius: cornerRadius).fill()
+            }
+        }
+        .font(Font.system(size: fontSize(for: size)))
+    }
+    
+    
+    
+    //MARK: - DESENHANDO Constants
+    
+    let cornerRadius: CGFloat = 10.0
+    let edgeLineWidth: CGFloat = 3
+    let fontScaleFactor: CGFloat = 0.75
+    
+    
+    func fontSize(for size: CGSize) -> CGFloat{
+        min(size.width, size.height)*0.75
     }
 }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            EmojiMemoryGameView(viewModel: EmojiMemoryGame())
+        }
+    }
+
